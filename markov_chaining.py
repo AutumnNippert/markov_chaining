@@ -88,8 +88,8 @@ class MarkovChain:
             for obj in self.map.keys():
                 f.write(f'{obj} : ')
                 for nextObj in range(len(self.map[obj])):
-                    for occurances in self.map[obj][nextObj]:
-                        f.write(f'{occurances} ({self.map[obj][nextObj][occurances]}) ')
+                    for occurrences in self.map[obj][nextObj]:
+                        f.write(f'{occurrences} ({self.map[obj][nextObj][occurrences]}) ')
                 f.write('\n')
 
 
@@ -104,14 +104,14 @@ class MarkovChain:
         else:
             total = 0
             for nextObj in range(len(self.map[obj])):
-                for occurances in self.map[obj][nextObj]:
-                    total += self.map[obj][nextObj][occurances]
+                for occurrences in self.map[obj][nextObj]:
+                    total += self.map[obj][nextObj][occurrences]
             rand = random.randint(1, total)
             for nextObj in range(len(self.map[obj])):
-                for occurances in self.map[obj][nextObj]:
-                    rand -= self.map[obj][nextObj][occurances]
+                for occurrences in self.map[obj][nextObj]:
+                    rand -= self.map[obj][nextObj][occurrences]
                     if rand <= 0:
-                        return occurances
+                        return occurrences
             return None
         
 def getStartingWord(markov_chain):
