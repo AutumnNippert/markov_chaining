@@ -115,7 +115,13 @@ class MarkovChain:
             return None
         
 def getStartingWord(markov_chain):
-    for word in markov_chain.map.keys():
+    # for word in markov_chain.map.keys():
+    #     if word[0].isupper():
+    #         return word
+    # return None
+    # Get Random Uppercase Word from the list of objects
+    while True:
+        word = random.choice(markov_chain.objects)
         if word[0].isupper():
             return word
     return None
@@ -144,9 +150,9 @@ def converse(markov_chain):
     
 def main():
     mc = MarkovChain(printing=True)
-    mc.importFile('kuromii.txt')
+    mc.importFile('transcript.txt')
     mc.train()
-    mc.savePolicy('kuromii.policy', readable=True)
+    mc.savePolicy('policy.pkl', True)
     converse(mc)
     return
     
